@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll to Survive: Sea Level Rising</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <span class="logo">Scroll to Survive</span>
+            <div class="year-display">
+                <span>Year: </span><span id="current-year">2024</span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Water overlay that rises -->
+        <div class="water-overlay" id="water"></div>
+
+        <!-- Intro Section -->
+        <section class="panel intro" id="intro">
+            <div class="content">
+                <h1>Scroll to Survive</h1>
+                <p class="subtitle">Sea Level Rising</p>
+                <p class="instruction">Scroll down to see the future</p>
+                <div class="scroll-indicator">
+                    <span></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Sections -->
+        <section class="panel timeline" data-year="2030">
+            <article class="city-card" data-elevation="2">
+                <figure>
+                    <img
+                        src="https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?w=800"
+                        srcset="https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?w=400 400w,
+                                https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?w=800 800w"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        alt="Miami Beach coastline"
+                        loading="lazy"
+                    >
+                    <figcaption>Miami Beach, USA</figcaption>
+                </figure>
+                <div class="data-overlay">
+                    <h2>2030</h2>
+                    <p class="stat">+0.3m sea level rise</p>
+                    <p class="impact">2.4 million people affected in Florida alone</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="panel timeline" data-year="2050">
+            <article class="city-card" data-elevation="4">
+                <figure>
+                    <img
+                        src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=800"
+                        srcset="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=400 400w,
+                                https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=800 800w"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        alt="Shanghai skyline"
+                        loading="lazy"
+                    >
+                    <figcaption>Shanghai, China</figcaption>
+                </figure>
+                <div class="data-overlay">
+                    <h2>2050</h2>
+                    <p class="stat">+0.5m sea level rise</p>
+                    <p class="impact">17.5 million people displaced in Shanghai</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="panel timeline" data-year="2070">
+            <article class="city-card" data-elevation="6">
+                <figure>
+                    <img
+                        src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800"
+                        srcset="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400 400w,
+                                https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800 800w"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        alt="London cityscape"
+                        loading="lazy"
+                    >
+                    <figcaption>London, UK</figcaption>
+                </figure>
+                <div class="data-overlay">
+                    <h2>2070</h2>
+                    <p class="stat">+0.8m sea level rise</p>
+                    <p class="impact">Thames Barrier overwhelmed, 1.2 million at risk</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="panel timeline" data-year="2100">
+            <article class="city-card" data-elevation="10">
+                <figure>
+                    <img
+                        src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800"
+                        srcset="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=400 400w,
+                                https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800 800w"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        alt="Mumbai coastline"
+                        loading="lazy"
+                    >
+                    <figcaption>Mumbai, India</figcaption>
+                </figure>
+                <div class="data-overlay">
+                    <h2>2100</h2>
+                    <p class="stat">+1.1m sea level rise</p>
+                    <p class="impact">300 million people in coastal flood zones globally</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- Final Section -->
+        <section class="panel finale" id="finale">
+            <aside class="message">
+                <h2>The Water Keeps Rising</h2>
+                <p class="big-stat">1 billion climate refugees by 2100</p>
+                <p>Every scroll represented years we can still change.</p>
+                <p>The question is: will we act in time?</p>
+            </aside>
+        </section>
+    </main>
+
+    <footer>
+        <address>
+            <p>Data sources: IPCC, Climate Central, NASA</p>
+        </address>
+        <p class="scroll-progress">Scroll Progress: <span id="progress">0</span>%</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

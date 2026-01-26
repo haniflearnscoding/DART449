@@ -1,0 +1,380 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #0a1628;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: linear-gradient(to bottom, rgba(10, 22, 40, 0.95), transparent);
+    padding: 1rem 2rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.year-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4fc3f7;
+}
+
+/* Water Overlay */
+.water-overlay {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0%;
+    background: linear-gradient(
+        to top,
+        rgba(2, 62, 125, 0.9) 0%,
+        rgba(6, 120, 180, 0.7) 50%,
+        rgba(79, 195, 247, 0.4) 100%
+    );
+    z-index: 100;
+    pointer-events: none;
+    transition: height 0.3s ease-out;
+}
+
+.water-overlay::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath fill='%234fc3f7' d='M0,60 C150,120 350,0 600,60 C850,120 1050,0 1200,60 L1200,120 L0,120 Z'/%3E%3C/svg%3E");
+    background-size: 1200px 20px;
+    background-repeat: repeat-x;
+    animation: wave 3s linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes wave {
+    0% { background-position-x: 0; }
+    100% { background-position-x: 1200px; }
+}
+
+/* Main */
+main {
+    position: relative;
+    z-index: 50;
+}
+
+/* Panel Sections */
+.panel {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+}
+
+/* Intro Section */
+.intro {
+    background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 100%);
+    text-align: center;
+}
+
+.intro .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.intro h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 0 0 40px rgba(79, 195, 247, 0.5);
+}
+
+.intro .subtitle {
+    font-size: 1.5rem;
+    color: #4fc3f7;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+}
+
+.intro .instruction {
+    margin-top: 3rem;
+    opacity: 0.7;
+    font-size: 1rem;
+}
+
+.scroll-indicator {
+    margin-top: 1rem;
+    width: 30px;
+    height: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+}
+
+.scroll-indicator span {
+    width: 6px;
+    height: 10px;
+    background: #4fc3f7;
+    border-radius: 3px;
+    animation: scrollBounce 1.5s infinite;
+}
+
+@keyframes scrollBounce {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(15px); opacity: 0.3; }
+}
+
+/* Timeline Sections */
+.timeline {
+    background: transparent;
+}
+
+.city-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    max-width: 800px;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.city-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.city-card.submerged {
+    opacity: 0.3;
+    filter: blur(2px);
+}
+
+.city-card figure {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.city-card img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.city-card:hover img {
+    transform: scale(1.05);
+}
+
+.city-card figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.data-overlay {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.data-overlay h2 {
+    font-size: 3rem;
+    color: #4fc3f7;
+    font-weight: 800;
+}
+
+.data-overlay .stat {
+    font-size: 1.5rem;
+    color: #ff6b6b;
+    font-weight: 600;
+}
+
+.data-overlay .impact {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 400px;
+}
+
+/* Finale Section */
+.finale {
+    background: linear-gradient(to top, #023e7d 0%, #0a1628 100%);
+    min-height: 100vh;
+}
+
+.finale .message {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 600px;
+}
+
+.finale h2 {
+    font-size: 2.5rem;
+    text-shadow: 0 0 30px rgba(79, 195, 247, 0.5);
+}
+
+.finale .big-stat {
+    font-size: 2rem;
+    color: #ff6b6b;
+    font-weight: 800;
+}
+
+.finale p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: linear-gradient(to top, rgba(10, 22, 40, 0.95), transparent);
+    font-size: 0.85rem;
+}
+
+footer address {
+    font-style: normal;
+    opacity: 0.6;
+}
+
+.scroll-progress {
+    color: #4fc3f7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header {
+        padding: 1rem;
+    }
+
+    .logo {
+        font-size: 1rem;
+    }
+
+    .year-display {
+        font-size: 1.2rem;
+    }
+
+    .intro h1 {
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+
+    .intro .subtitle {
+        font-size: 1rem;
+        letter-spacing: 4px;
+    }
+
+    .panel {
+        padding: 1rem;
+    }
+
+    .city-card {
+        gap: 1.5rem;
+    }
+
+    .city-card img {
+        height: 250px;
+    }
+
+    .data-overlay h2 {
+        font-size: 2rem;
+    }
+
+    .data-overlay .stat {
+        font-size: 1.2rem;
+    }
+
+    .data-overlay .impact {
+        font-size: 1rem;
+    }
+
+    .finale h2 {
+        font-size: 1.75rem;
+    }
+
+    .finale .big-stat {
+        font-size: 1.5rem;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .intro h1 {
+        font-size: 1.5rem;
+    }
+
+    .city-card img {
+        height: 200px;
+    }
+}
