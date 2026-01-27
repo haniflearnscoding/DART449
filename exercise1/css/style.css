@@ -1,3 +1,6 @@
+/* Google Fonts - Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 /* Reset */
 * {
     margin: 0;
@@ -10,10 +13,10 @@ html {
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    background-color: #0a1628;
-    color: #fff;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.5;
+    background-color: #ffffff;
+    color: #0a0a0a;
     overflow-x: hidden;
 }
 
@@ -30,35 +33,45 @@ header {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: linear-gradient(to bottom, rgba(10, 22, 40, 0.95), transparent);
-    padding: 1rem 2rem;
+    padding: 1.5rem 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
 .logo {
-    font-size: 1.25rem;
-    font-weight: bold;
-    letter-spacing: 1px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #0a0a0a;
 }
 
 .year-display {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #4fc3f7;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #0a0a0a;
 }
 
-/* Water Overlay */
+#current-year {
+    font-variant-numeric: tabular-nums;
+}
+
+/* Water Overlay - Blue Rise Effect */
 .water-overlay {
+    --wave-duration: 4s;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -66,32 +79,54 @@ nav {
     height: 0%;
     background: linear-gradient(
         to top,
-        rgba(2, 62, 125, 0.9) 0%,
-        rgba(6, 120, 180, 0.7) 50%,
-        rgba(79, 195, 247, 0.4) 100%
+        rgba(0, 119, 182, 0.5) 0%,
+        rgba(0, 150, 199, 0.35) 30%,
+        rgba(0, 180, 216, 0.2) 60%,
+        rgba(144, 224, 239, 0.1) 80%,
+        transparent 100%
     );
     z-index: 100;
     pointer-events: none;
-    transition: height 0.3s ease-out;
+    opacity: 0;
 }
 
+/* Water surface line */
 .water-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(0, 119, 182, 0.8) 20%,
+        rgba(0, 180, 216, 1) 50%,
+        rgba(0, 119, 182, 0.8) 80%,
+        transparent 100%
+    );
+    box-shadow:
+        0 0 30px rgba(0, 119, 182, 0.6),
+        0 0 60px rgba(0, 180, 216, 0.3);
+}
+
+/* Animated wave */
+.water-overlay::after {
     content: '';
     position: absolute;
     top: -10px;
     left: 0;
     right: 0;
     height: 20px;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath fill='%234fc3f7' d='M0,60 C150,120 350,0 600,60 C850,120 1050,0 1200,60 L1200,120 L0,120 Z'/%3E%3C/svg%3E");
-    background-size: 1200px 20px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 40'%3E%3Cpath fill='rgba(0,150,199,0.5)' d='M0,20 Q150,5 300,20 T600,20 T900,20 T1200,20 L1200,40 L0,40 Z'/%3E%3C/svg%3E");
+    background-size: 600px 20px;
     background-repeat: repeat-x;
-    animation: wave 3s linear infinite;
-    opacity: 0.6;
+    animation: waveMove var(--wave-duration) linear infinite;
 }
 
-@keyframes wave {
+@keyframes waveMove {
     0% { background-position-x: 0; }
-    100% { background-position-x: 1200px; }
+    100% { background-position-x: 600px; }
 }
 
 /* Main */
@@ -106,13 +141,13 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: 6rem 2rem;
     position: relative;
 }
 
 /* Intro Section */
 .intro {
-    background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 100%);
+    background: #ffffff;
     text-align: center;
 }
 
@@ -120,98 +155,87 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
+    max-width: 800px;
 }
 
 .intro h1 {
-    font-size: 4rem;
-    font-weight: 800;
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 4px;
-    text-shadow: 0 0 40px rgba(79, 195, 247, 0.5);
+    letter-spacing: -0.02em;
+    color: #0a0a0a;
+    line-height: 0.95;
 }
 
 .intro .subtitle {
-    font-size: 1.5rem;
-    color: #4fc3f7;
-    letter-spacing: 8px;
+    font-size: clamp(0.75rem, 2vw, 1rem);
+    color: #0077b6;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
+    font-weight: 500;
 }
 
 .intro .instruction {
     margin-top: 3rem;
-    opacity: 0.7;
-    font-size: 1rem;
+    font-size: 0.875rem;
+    color: #666;
+    font-weight: 400;
 }
 
 .scroll-indicator {
     margin-top: 1rem;
-    width: 30px;
-    height: 50px;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    border-radius: 15px;
+    width: 24px;
+    height: 40px;
+    border: 1.5px solid rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
     display: flex;
     justify-content: center;
     padding-top: 8px;
 }
 
 .scroll-indicator span {
-    width: 6px;
-    height: 10px;
-    background: #4fc3f7;
-    border-radius: 3px;
-    animation: scrollBounce 1.5s infinite;
+    width: 3px;
+    height: 8px;
+    background: #0a0a0a;
+    border-radius: 2px;
+    animation: scrollBounce 2s ease-in-out infinite;
 }
 
 @keyframes scrollBounce {
     0%, 100% { transform: translateY(0); opacity: 1; }
-    50% { transform: translateY(15px); opacity: 0.3; }
+    50% { transform: translateY(10px); opacity: 0.3; }
 }
 
 /* Timeline Sections */
 .timeline {
-    background: transparent;
+    background: #ffffff;
 }
 
 .city-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
-    max-width: 800px;
+    gap: 2.5rem;
+    max-width: 900px;
     width: 100%;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.city-card.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.city-card.submerged {
-    opacity: 0.3;
-    filter: blur(2px);
+    will-change: transform, opacity;
 }
 
 .city-card figure {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     position: relative;
+    height: 300px;
+    background: #f5f5f5;
 }
 
 .city-card img {
     width: 100%;
-    height: 400px;
+    height: 120%;
     object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.city-card:hover img {
-    transform: scale(1.05);
+    will-change: transform;
 }
 
 .city-card figcaption {
@@ -219,40 +243,46 @@ main {
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 1rem;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-    font-size: 0.9rem;
-    color: #ccc;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .data-overlay {
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.75rem;
 }
 
 .data-overlay h2 {
-    font-size: 3rem;
-    color: #4fc3f7;
-    font-weight: 800;
+    font-size: clamp(3rem, 10vw, 5rem);
+    color: #0a0a0a;
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
 
 .data-overlay .stat {
-    font-size: 1.5rem;
-    color: #ff6b6b;
+    font-size: 1.25rem;
+    color: #0077b6;
     font-weight: 600;
 }
 
 .data-overlay .impact {
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    color: #555;
     max-width: 400px;
+    font-weight: 400;
+    line-height: 1.6;
 }
 
 /* Finale Section */
 .finale {
-    background: linear-gradient(to top, #023e7d 0%, #0a1628 100%);
+    background: #ffffff;
     min-height: 100vh;
 }
 
@@ -261,24 +291,28 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
     max-width: 600px;
+    padding: 3rem;
 }
 
 .finale h2 {
-    font-size: 2.5rem;
-    text-shadow: 0 0 30px rgba(79, 195, 247, 0.5);
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-weight: 700;
+    color: #0a0a0a;
+    letter-spacing: -0.02em;
 }
 
 .finale .big-stat {
-    font-size: 2rem;
-    color: #ff6b6b;
-    font-weight: 800;
+    font-size: clamp(1.25rem, 4vw, 2rem);
+    color: #0077b6;
+    font-weight: 700;
 }
 
 .finale p {
-    font-size: 1.2rem;
-    opacity: 0.9;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.7;
 }
 
 /* Footer */
@@ -289,92 +323,80 @@ footer {
     right: 0;
     z-index: 200;
     display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-align: center;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background: linear-gradient(to top, rgba(10, 22, 40, 0.95), transparent);
-    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    font-size: 0.75rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 footer address {
     font-style: normal;
-    opacity: 0.6;
+    color: #888;
+    font-weight: 400;
 }
 
 .scroll-progress {
-    color: #4fc3f7;
+    color: #0a0a0a;
+    font-weight: 500;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Responsive - Min-width (mobile-first) */
+@media (min-width: 481px) {
+    .city-card figure {
+        height: 350px;
+    }
+}
+
+@media (min-width: 769px) {
     header {
-        padding: 1rem;
+        padding: 1.5rem 3rem;
     }
 
     .logo {
-        font-size: 1rem;
+        font-size: 0.875rem;
     }
 
     .year-display {
-        font-size: 1.2rem;
-    }
-
-    .intro h1 {
-        font-size: 2rem;
-        letter-spacing: 2px;
-    }
-
-    .intro .subtitle {
         font-size: 1rem;
-        letter-spacing: 4px;
     }
 
     .panel {
-        padding: 1rem;
+        padding: 8rem 4rem;
     }
 
     .city-card {
-        gap: 1.5rem;
+        gap: 3rem;
     }
 
-    .city-card img {
-        height: 250px;
+    .city-card figure {
+        height: 450px;
+        border-radius: 12px;
     }
 
-    .data-overlay h2 {
-        font-size: 2rem;
+    .city-card figcaption {
+        font-size: 0.8rem;
     }
 
-    .data-overlay .stat {
-        font-size: 1.2rem;
-    }
-
-    .data-overlay .impact {
-        font-size: 1rem;
-    }
-
-    .finale h2 {
-        font-size: 1.75rem;
-    }
-
-    .finale .big-stat {
-        font-size: 1.5rem;
+    .finale .message {
+        padding: 4rem;
     }
 
     footer {
-        flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
-        padding: 0.75rem;
+        flex-direction: row;
+        padding: 1rem 3rem;
+        font-size: 0.8rem;
     }
 }
 
-@media (max-width: 480px) {
-    .intro h1 {
-        font-size: 1.5rem;
-    }
-
-    .city-card img {
-        height: 200px;
+@media (min-width: 1024px) {
+    .city-card figure {
+        height: 500px;
     }
 }
