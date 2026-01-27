@@ -156,7 +156,8 @@ main {
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
-    max-width: 800px;
+    max-width: 100%;
+    padding: 0 1rem;
 }
 
 .intro h1 {
@@ -256,6 +257,7 @@ main {
     text-align: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 0.75rem;
 }
 
@@ -315,6 +317,51 @@ main {
     line-height: 1.7;
 }
 
+/* Restart Button */
+.restart-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background: #0077b6;
+    border: 2px solid #0077b6;
+    border-radius: 50px;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.restart-btn:hover {
+    background: #005a8c;
+    border-color: #005a8c;
+    transform: scale(1.05);
+}
+
+.restart-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.restart-btn:hover svg {
+    transform: rotate(-45deg);
+}
+
+/* Water transition overlay */
+.water-overlay.filling {
+    transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.water-overlay.draining {
+    transition: height 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* Footer */
 footer {
     position: fixed;
@@ -354,6 +401,7 @@ footer address {
     }
 }
 
+/* Tablet - 2 column layout */
 @media (min-width: 769px) {
     header {
         padding: 1.5rem 3rem;
@@ -368,23 +416,55 @@ footer address {
     }
 
     .panel {
-        padding: 8rem 4rem;
+        padding: 6rem 4rem;
     }
 
+    /* City cards - 2 column side by side */
     .city-card {
-        gap: 3rem;
+        flex-direction: row;
+        align-items: center;
+        gap: 4rem;
+        max-width: 1200px;
     }
 
     .city-card figure {
-        height: 450px;
+        flex: 1;
+        height: 400px;
         border-radius: 12px;
+        min-width: 0;
+    }
+
+    .data-overlay {
+        flex: 1;
+        text-align: left;
+        align-items: flex-start;
+    }
+
+    .data-overlay .impact {
+        max-width: 100%;
+    }
+
+    /* Alternate layout - every other card flipped */
+    .timeline:nth-child(odd) .city-card {
+        flex-direction: row;
+    }
+
+    .timeline:nth-child(even) .city-card {
+        flex-direction: row-reverse;
+    }
+
+    .timeline:nth-child(even) .data-overlay {
+        text-align: right;
+        align-items: flex-end;
     }
 
     .city-card figcaption {
         font-size: 0.8rem;
     }
 
+    /* Finale - wider layout */
     .finale .message {
+        max-width: 700px;
         padding: 4rem;
     }
 
@@ -395,8 +475,45 @@ footer address {
     }
 }
 
+/* Desktop - larger with more spacing */
 @media (min-width: 1024px) {
+    .panel {
+        padding: 8rem 6rem;
+    }
+
+    .city-card {
+        gap: 6rem;
+        max-width: 1400px;
+    }
+
     .city-card figure {
         height: 500px;
+    }
+
+    .data-overlay h2 {
+        font-size: 6rem;
+    }
+
+    .data-overlay .stat {
+        font-size: 1.5rem;
+    }
+
+    .data-overlay .impact {
+        font-size: 1.125rem;
+    }
+
+    .finale .message {
+        max-width: 800px;
+    }
+}
+
+/* Large desktop - 3 column potential */
+@media (min-width: 1400px) {
+    .city-card {
+        max-width: 1600px;
+    }
+
+    .city-card figure {
+        height: 550px;
     }
 }

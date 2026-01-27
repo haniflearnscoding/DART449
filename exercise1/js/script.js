@@ -158,20 +158,93 @@ function initGSAP() {
     // Finale section
     const finale = document.querySelector('.finale');
     const finaleMessage = finale.querySelector('.message');
+    const finaleH2 = finaleMessage.querySelector('h2');
+    const finaleBigStat = finaleMessage.querySelector('.big-stat');
+    const finaleTexts = finaleMessage.querySelectorAll('p:not(.big-stat)');
 
-    gsap.from(finaleMessage.children, {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power2.out',
+    const finaleTl = gsap.timeline({
         scrollTrigger: {
             trigger: finale,
             start: 'top 60%',
             toggleActions: 'play none none reverse'
         }
     });
+
+    finaleTl.from(finaleH2, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power2.out'
+    })
+    .from(finaleBigStat, {
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        ease: 'power2.out'
+    }, '-=0.5')
+    .from(finaleTexts, {
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power2.out'
+    }, '-=0.4');
+}
+
+// Restart button - water fills screen then returns to top
+function initRestart() {
+    const restartBtn = document.getElementById('restart');
+
+    restartBtn.addEventListener('click', () => {
+        // Disable scroll during transition
+        document.body.style.overflow = 'hidden';
+
+        // Get current water height before disabling ScrollTriggers
+        const currentHeight = water.style.height || `${MAX_WATER_HEIGHT}%`;
+
+        // Kill all ScrollTrigger animations on water
+        ScrollTrigger.getAll().forEach(st => st.kill());
+
+        // Ensure water stays at current position
+        gsap.set(water, { height: currentHeight, opacity: 1 });
+
+        // Fill screen with water
+        gsap.to(water, {
+            height: '100%',
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power2.inOut',
+            onComplete: () => {
+                // Scroll to top instantly (hidden by water)
+                window.scrollTo(0, 0);
+
+                // Update year display
+                yearDisplay.textContent = START_YEAR;
+                progressDisplay.textContent = '0';
+
+                // Small delay then drain water
+                setTimeout(() => {
+                    gsap.to(water, {
+                        height: '0%',
+                        opacity: 0,
+                        duration: 1,
+                        ease: 'power2.out',
+                        onComplete: () => {
+                            // Re-enable scroll
+                            document.body.style.overflow = '';
+
+                            // Reinitialize all GSAP animations
+                            initGSAP();
+                        }
+                    });
+                }, 300);
+            }
+        });
+    });
 }
 
 // Initialize
-document.addEventListener('DOMContentLoaded', initGSAP);
+document.addEventListener('DOMContentLoaded', () => {
+    initGSAP();
+    initRestart();
+});
