@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keydown Event Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Hidden input to capture key events -->
+    <input type="text" id="key-capture" autofocus>
+
+    <h1>Keydown Event Handler</h1>
+
+    <div class="instructions">
+        <p>Press keys to interact:</p>
+        <p>
+            <kbd>A-Z</kbd> Change text |
+            <kbd>1-9</kbd> Change color |
+            <kbd>Arrow keys</kbd> Move/resize |
+            <kbd>Space</kbd> Reset
+        </p>
+    </div>
+
+    <div id="current-key">Press any key...</div>
+
+    <div class="main-area">
+        <!-- Text Change Panel -->
+        <div class="panel">
+            <h2>1. Text Changes</h2>
+            <div id="text-display">Type letters to build text here</div>
+        </div>
+
+        <!-- Style Change Panel -->
+        <div class="panel">
+            <h2>2. Style Changes</h2>
+            <div id="style-box">Use number keys & arrows</div>
+        </div>
+    </div>
+
+    <p id="focus-hint" class="focus-hint">Click anywhere to start capturing keys</p>
+
+    <!-- Event Log -->
+    <div class="log-container">
+        <div class="log-header">
+            <h2>Event Log</h2>
+            <button class="clear-btn" onclick="clearLog()">Clear</button>
+        </div>
+        <div id="event-log"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
