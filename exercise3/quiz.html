@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Quiz</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quick Quiz</h1>
+        
+        <div class="question">
+            <h3>Question 1:</h3>
+            <p>What programming language runs in the browser?</p>
+            <input type="text" id="answer1" placeholder="Type your answer here...">
+        </div>
+
+        <div class="question">
+            <h3>Question 2:</h3>
+            <p>What does CSS stand for?</p>
+            <input type="text" id="answer2" placeholder="Type your answer here...">
+        </div>
+
+        <button id="submitBtn">Submit Answers</button>
+
+        <div class="result" id="resultDiv">
+            <div class="emoji" id="emoji"></div>
+            <div class="score" id="scoreDisplay"></div>
+            <div class="feedback" id="feedback"></div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
